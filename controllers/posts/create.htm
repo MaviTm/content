@@ -1,0 +1,11 @@
+<?php if (!$this->fatalError): ?>
+    <div class="layout-row fancy-layout mavitmContentLayout">
+        <?= Form::open(['class' => 'layout']) ?>
+            <?= $this->formRender() ?>
+        <?= Form::close() ?>
+    </div>
+    <div id="galleriesData" class="hidden"><?php echo json_encode($parentlist);?></div>
+<?php else: ?>
+    <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+    <p><a href="<?= Backend::url('mavitm/content/posts') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+<?php endif ?>

@@ -1,0 +1,80 @@
+fields:
+    title:
+        label: 'mavitm.content::lang.post.title'
+        placeholder: 'mavitm.content::lang.post.title_placeholder'
+        span: auto
+        type: text
+    slug:
+        label: 'mavitm.content::lang.post.slug'
+        placeholder: 'mavitm.content::lang.post.slug'
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text
+    toolbar:
+        type: partial
+        path: post_toolbar
+        cssClass: collapse-visible
+secondaryTabs:
+    fields:
+        content_html:
+            tab: 'mavitm.content::lang.post.content'
+            size: giant
+            span: full
+            type: richeditor
+        published:
+            tab: 'mavitm.content::lang.post.updated_at'
+            label: 'mavitm.content::lang.post.published'
+            span: left
+            type: checkbox
+        published_at:
+            tab: 'mavitm.content::lang.post.updated_at'
+            label: 'mavitm.content::lang.post.published_at'
+            span: left
+            cssClass: checkbox-align
+            type: datepicker
+            mode: datetime
+            trigger:
+                action: enable
+                field: published
+                condition: checked
+        excerpt:
+            tab: 'mavitm.content::lang.post.updated_at'
+            label: 'mavitm.content::lang.post.excerpt'
+            size: tiny
+            span: full
+            type: textarea
+        categories:
+            tab: 'mavitm.content::lang.content.categories.categories'
+            type: relation
+        header_image:
+            label: 'mavitm.content::lang.post.header_image'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            tab: 'mavitm.content::lang.post.pictures'
+        list_image:
+            label: 'mavitm.content::lang.post.list_image'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            tab: 'mavitm.content::lang.post.pictures'
+        gallery_images:
+            label: 'mavitm.content::lang.post.gallery_images'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            tab: 'mavitm.content::lang.post.pictures'

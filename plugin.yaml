@@ -1,0 +1,16 @@
+plugin:
+    name: 'mavitm.content::lang.plugin.name'
+    description: 'mavitm.content::lang.plugin.description'
+    author: MaviTm
+    icon: oc-icon-archive
+    homepage: ''
+navigation:
+    content:
+        label: 'mavitm.content::lang.plugin.name'
+        url: mavitm/content/posts
+        icon: icon-archive
+        sideMenu:
+            content_category:
+                label: 'mavitm.content::lang.content.categories.categories'
+                url: mavitm/content/categories
+                icon: icon-archive

@@ -1,0 +1,19 @@
+.mavitmContentLayout .tab-content .tab-pane:nth-of-type(n+2){
+    padding: 25px !important;
+}
+
+.galleries{
+    width: 100%;
+    height: 160px;
+    background-color: #333333;
+    text-align: center;
+    margin:25px 0;
+    padding:60px 25px;
+    overflow: hidden;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 32px;
+    color: #FFFFFF;
+    cursor: pointer;
+}

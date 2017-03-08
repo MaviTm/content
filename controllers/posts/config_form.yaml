@@ -1,0 +1,10 @@
+name: Posts
+form: $/mavitm/content/models/post/fields.yaml
+modelClass: Mavitm\Content\Models\Post
+defaultRedirect: mavitm/content/posts
+create:
+    redirect: 'mavitm/content/posts/update/:id'
+    redirectClose: mavitm/content/posts
+update:
+    redirect: mavitm/content/posts
+    redirectClose: mavitm/content/posts

@@ -1,0 +1,10 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    name:
+        label: 'mavitm.content::lang.plugin.name'
+        type: text
+        searchable: true
+        sortable: true

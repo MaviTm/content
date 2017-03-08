@@ -1,0 +1,71 @@
+<?php return [
+    'plugin' => [
+        'name' => 'Content',
+        'description' => '',
+    ],
+    'content' => [
+        'categories' => [
+            'name' => 'Kategori adı',
+            'slug' => 'Slug',
+            'description' => 'Genel Açıklama',
+            'categories' => 'Kategoriler',
+            'return_to_categories' => 'Kategorilere geri dön',
+            'create_category' => 'Yeni kategori',
+            'reorder' => 'Yeniden sırala',
+        ],
+        'categories_components' => [
+            'title' => 'İçerik kategorileri',
+            'description' => 'İçerik kategorilerini listeler menü',
+            'category_slug' => 'Seçili olacak değer parametresi',
+            'category_slug_description' => 'Kategorilerde gezinirken hangisinde olunduğu',
+            'category_display_empty' => 'Boş kategorileri göster',
+            'category_display_empty_description' => 'İçerik eklenmemiş kategorileri görünür yapar',
+            'category_page' => 'Kategori sayfası',
+            'category_page_description' => 'Kategoriye bağlantı verilecek olan sayfa'
+        ]
+    ],
+    'post' => [
+        'title' => 'Başlık',
+        'title_placeholder' => 'Buraya başlık yazınız',
+        'slug' => 'Slug',
+        'excerpt' => 'Kısa açıklama',
+        'content' => 'Açıklama',
+        'published' => 'Aktif',
+        'published_at' => 'Aktif olma tarihi',
+        'published_desc' => 'İçeriğinizin sitede görünüp görünmeyeceğini belirleyiniz',
+        'created_at' => 'Eklenme',
+        'updated_at' => 'Düzenleme',
+        'pictures' => 'Resimler',
+        'header_image' => 'Üst geniş resim',
+        'list_image' => 'Liste resmi',
+        'gallery_images' => 'Galeri resimleri',
+    ],
+    'components' => [
+        'post' => [
+            "title" => "İçerik detayı",
+            "description" => "Eklenen içeriğin görüntülenmesi.",
+            'post_slug_description' => 'Kategorilerde gezinirken hangisinde olunduğu',
+        ],
+        'posts' => [
+            "title" => "İçerik listesi",
+            "description" => "Eklenen içeriklerin listelendiği sayfa.",
+            'posts_pagination' => 'Sayfa numarası',
+            'posts_pagination_description' => 'Bu değer kullanıcının hangi sayfada olduğunu belirlemek için kullanılır.',
+            'posts_filter' => 'Kategori filtresi',
+            'posts_filter_description' => 'Gönderileri filtrelemek için kategori kısa URLsi ya da URL parametresi girin. Tüm gönderiler için boş bırakın.',
+            'posts_per_page' => 'Sayfa başına gönderi',
+            'posts_per_page_validation' => 'Sayfa başına gönderi için geçersiz format',
+            'posts_no_posts' => 'Gönderi mesajı yok',
+            'posts_no_posts_description' => 'Eğer bir gönderi yoksa gönderi listesinde görüntülenecek mesaj. Bu özellik varsayılan kısmi bileşeni tarafından kullanılır.',
+            'posts_order' => 'Gönderi Sırası',
+            'posts_order_description' => 'Attribute on which the posts should be ordered',
+            'posts_category' => 'Kategori sayfası',
+            'posts_category_description' => 'Name of the category page file for the "Posted into" category links. Bu özellik varsayılan kısmi bileşeni tarafından kullanılır.',
+            'posts_post' => 'Gönderi sayfası',
+            'posts_post_description' => '"Daha fazla bilgi edinin" bağlantıları için gönderi sayfası dosyasının adı. Bu özellik varsayılan kısmi bileşeni tarafından kullanılır.',
+            'posts_except_post' => 'Except post',
+            'posts_except_post_description' => 'Enter ID/URL or variable with post ID/URL you want to except',
+        ]
+    ],
+    'icerikler' => 'İçerikler',
+];

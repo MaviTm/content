@@ -1,0 +1,18 @@
+fields:
+    name:
+        label: 'mavitm.content::lang.content.categories.name'
+        span: left
+        required: 1
+        type: text
+    slug:
+        label: 'mavitm.content::lang.content.categories.slug'
+        span: right
+        preset:
+            field: name
+            type: slug
+        type: text
+    description:
+        label: 'mavitm.content::lang.content.categories.description'
+        size: large
+        span: full
+        type: richeditor

@@ -1,0 +1,5 @@
+.lightGallery div {
+            display: block;
+            float: left;
+            margin: 3px;
+        }

@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: mavitm.content::lang.content.categories.create_category
+form: ~/plugins/mavitm/content/models/category/fields.yaml
+modelClass: Mavitm\Content\Models\Category
+defaultRedirect: mavitm/content/categories
+
+create:
+    redirect: mavitm/content/categories/update/:id
+    redirectClose: mavitm/content/categories
+
+update:
+    redirect: mavitm/content/categories
+    redirectClose: mavitm/content/categories

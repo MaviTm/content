@@ -1,0 +1,11 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table mavitm_content_categories'
+    - builder_table_create_mavitm_content_categories.php
+1.0.3:
+    - 'Created table mavitm_content_posts'
+    - builder_table_create_mavitm_content_posts.php
+1.0.4:
+    - 'Created table mavitm_content_posts_categories'
+    - builder_table_create_mavitm_content_posts_categories.php

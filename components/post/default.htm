@@ -1,0 +1,82 @@
+{% set post = __SELF__.post %}
+
+<div class="content">
+    {{ post.content_html|raw }}
+</div>
+
+{% if post.featured_images.count %}
+    <div class="featured-images text-center">
+        {% for image in post.featured_images %}
+            <p>
+                <img
+                    data-src="{{ image.filename }}"
+                    src="{{ image.path }}"
+                    alt="{{ image.description }}"
+                    style="max-width: 100%" />
+            </p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<p class="info">
+    Posted
+    {% if post.categories.count %} in
+        {% for category in post.categories %}
+            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+    on {{ post.published_at|date('M d, Y') }}
+</p>
+
+
+{% put scripts %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.lightGallery').lightGallery({
+        mode: '{{ allComponents.mode }}',
+        speed: {{ allComponents.speed }},
+        height: '{{ allComponents.height }}',
+        width: '{{ allComponents.width }}',
+        addClass: '{{ allComponents.addClass }}',
+        startClass: '{{ allComponents.startClass }}',
+        backdropDuration: {{ allComponents.backdropDuration }},
+        hideBarsDelay: {{ allComponents.hideBarsDelay }},
+        closable: {{ allComponents.closable }},
+        loop: {{ allComponents.loop }},
+        escKey: {{ allComponents.escKey }},
+        keyPress: {{ allComponents.keyPress }},
+        controls: {{ allComponents.controls }},
+        slideEndAnimation: {{ allComponents.slideEndAnimation }},
+        hideControlOnEnd: {{ allComponents.hideControlOnEnd }},
+        mousewheel: {{ allComponents.mousewheel }},
+        preload: {{ allComponents.preload }},
+        showAfterLoad: {{ allComponents.showAfterLoad }},
+        download: {{ allComponents.download }},
+        counter: {{ allComponents.counter }},
+        swipeThreshold: '{{ allComponents.swipeThreshold }}',
+                enableDrag: {{ allComponents.enableDrag }},
+        enableTouch: {{ allComponents.enableTouch }},
+        thumbnail: {{ allComponents.thumbnail }},
+        animateThumb: {{ allComponents.animateThumb }},
+        currentPagerPosition: '{{ allComponents.currentPagerPosition }}',
+                thumbWidth: {{ allComponents.thumbWidth }},
+        thumbContHeight: {{ allComponents.thumbContHeight }},
+        thumbMargin: {{ allComponents.thumbMargin }},
+        toogleThumb: {{ allComponents.toogleThumb }},
+        enableThumbDrag: {{ allComponents.enableThumbDrag }},
+        enableThumbSwipe: {{ allComponents.enableThumbSwipe }},
+        swipeThreshold: {{ allComponents.thumbSwipeThreshold }},
+        autoplay: {{ allComponents.autoplay }},
+        pause: {{ allComponents.pause }},
+        progressBar: {{ allComponents.progressBar }},
+        forceAutoplay: {{ allComponents.forceAutoplay }},
+        autoplayControls: {{ allComponents.autoplayControls }},
+        fullScreen: {{ allComponents.fullScreen }},
+        pager: {{ allComponents.pager }},
+        zoom: {{ allComponents.zoom }},
+        scale: {{ allComponents.scale }}
+    });
+    });
+</script>
+{% endput %}
