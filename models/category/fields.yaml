@@ -16,3 +16,16 @@ fields:
         size: large
         span: full
         type: richeditor
+    category_type:
+        label: 'mavitm.content::lang.post.content_type'
+        type: dropdown
+    image:
+        label: 'mavitm.content::lang.post.list_image'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+        tab: 'mavitm.content::lang.post.pictures'

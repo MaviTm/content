@@ -1,0 +1,39 @@
+{% if categories %}
+        {% for category in categories %}
+
+            {% if category.parent_id > 0 %}
+                <div class="col-md-4 col-sm-6">
+
+                    <div class="mygrid gstyle5">
+                        <div class="gsHead">
+                            <a href="{{ category.url }}">
+                                {% if category.image.count > 0 %}
+                                <img class="media-object" src="{{ category.image.thumb(400, auto) }}" />
+                                {% else %}
+                                <img class="media-object" src="http://placehold.it/400x400" />
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="gsMain">
+                            <h1><a href="{{ category.url }}">{{ category.name }}</a></h1>
+                            {{ category.description|raw }}
+                        </div>
+                        <div class="gsFooter">
+                            <div class="gsMore"><a><i class="fa fa-plus"></i> {{ 'Detail'|_ }}</a></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            {% endif %}
+
+            {% if category.children %}
+                {% partial __SELF__ ~ "::items"
+                categories=category.children
+                currentCategorySlug=currentCategorySlug
+                %}
+            {% endif %}
+
+        {% endfor %}
+{% endif %}

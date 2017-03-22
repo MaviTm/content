@@ -13,6 +13,7 @@ class BuilderTableCreateMavitmContentCategories extends Migration
             $table->increments('id');
             $table->string('name', 255)->nullable();
             $table->string('slug', 255)->index();
+            $table->string('category_type', 255)->index();
             $table->text('description')->nullable();
             $table->integer('parent_id')->nullable();
             $table->integer('nest_left')->nullable();

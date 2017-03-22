@@ -2,6 +2,7 @@
 
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
+use Mavitm\Content\Classes\TextFilter;
 use Mavitm\Content\Models\Post as BlogPost;
 use Rjchauhan\LightGallery\Models\ImageGallery as ImageGalleryModel;
 
@@ -62,8 +63,9 @@ class Post extends ComponentBase
     protected function loadPost()
     {
         $slug = $this->property('slug');
-
         $post = new BlogPost;
+
+        TextFilter::instance()->setVariable($this->allComponents);
 
         $post = $post->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
             ? $post->transWhere('slug', $slug)
@@ -71,10 +73,12 @@ class Post extends ComponentBase
 
         $post = $post->isPublished()->first();
 
-        if(strpos($post->content_html,"[/gallery]")){
-            $this->page["gallery"] = 1;
+        if(!empty($post->content_html)) {
+            if (strpos($post->content_html, "[/gallery]")) {
+                $this->page["gallery"] = 1;
 
-            $post->content_html = $this->textInGallery($post->content_html);
+                $post->content_html = TextFilter::instance()->textInGallery($post->content_html);
+            }
         }
 
         /*
@@ -87,35 +91,6 @@ class Post extends ComponentBase
         }
 
         return $post;
-    }
-
-    protected function textInGallery($string)
-    {
-        $string = preg_replace_callback('#\[gallery\](.*?)\[\/gallery\]#is', array($this,"textInGalleryInsert"), $string);
-        return $string;
-    }
-
-    protected function textInGalleryInsert($param)
-    {
-        $id = explode('-',$param[1])[0];
-        if(!is_numeric($id)){
-            return '';
-        }
-
-        $mainThumbWidth     = (!empty($this->allComponents['mainThumbWidth']) ? $this->allComponents['mainThumbWidth'] : 80);
-        $mainThumbHeight    = (!empty($this->allComponents['mainThumbHeight']) ? $this->allComponents['mainThumbHeight'] : 60);
-        $resizer            = (!empty($this->allComponents['resizer']) ? $this->allComponents['resizer'] : 'crop');
-
-        $gallery = ImageGalleryModel::find($id);
-
-        $return = '<div style="width: 100%" class="lightGallery">';
-            foreach($gallery->images as $im){
-                $return .= '<div data-src="'.$im->path.'" data-sub-html="<h4>'.$im->title.'</h4><p>'.$im->description.'</p>">
-            <a href=""><img class="img-responsive" src="'.$im->getThumb($mainThumbWidth, $mainThumbHeight, $resizer).'" alt="'.$im->title.'"></a>
-        </div>';
-            }
-        $return .= '</div><div class="clearfix"></div> ';
-        return $return;
     }
 
 }

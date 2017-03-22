@@ -14,9 +14,11 @@ class BuilderTableCreateMavitmContentPosts extends Migration
             $table->integer('user_id')->nullable();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
+            $table->string('content_type', 200)->index();
             $table->string('excerpt')->nullable();
             $table->text('content_html')->nullable();
             $table->text('config')->nullable();
+            $table->integer('sort_order')->nullable();
             $table->boolean('published')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->timestamp('created_at')->nullable();

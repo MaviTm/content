@@ -7,6 +7,9 @@ columns:
         label: 'mavitm.content::lang.post.title'
         type: text
         searchable: true
+    categoryName:
+        label: 'mavitm.content::lang.content.categories.name'
+        type: text
     created_at:
         label: created_at
         type: datetime

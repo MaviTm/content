@@ -80,6 +80,11 @@ class Posts extends ComponentBase
                 'validationMessage' => 'mavitm.content::lang.components.posts.posts_per_page_validation',
                 'default'           => '10',
             ],
+            'groupType' => [
+                'title'       => 'mavitm.content::lang.post.content_type',
+                'type'        => 'dropdown',
+                'default'     => '',
+            ],
             'noPostsMessage' => [
                 'title'        => 'mavitm.content::lang.components.posts.posts_no_posts',
                 'description'  => 'mavitm.content::lang.components.posts.posts_no_posts_description',
@@ -134,6 +139,10 @@ class Posts extends ComponentBase
         return BlogPost::$allowedSortingOptions;
     }
 
+    public function getGroupTypeOptions(){
+        return BlogPost::$posType;
+    }
+
     public function onRun()
     {
         $this->prepareVars();
@@ -178,6 +187,7 @@ class Posts extends ComponentBase
             'search'     => trim(input('search')),
             'category'   => $category,
             'exceptPost' => $this->property('exceptPost'),
+            'type'       => $this->property('groupType'),
         ]);
 
         /*

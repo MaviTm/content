@@ -1,0 +1,54 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+
+    category:
+
+        # Filter name
+        label: mavitm.content::lang.content.categories.categories
+
+        # Model Class name
+        modelClass: Mavitm\Content\Models\Category
+
+        # Model attribute to display for the name
+        nameFrom: name
+
+        # Apply query scope
+        scope: FilterCategories
+
+    content_type:
+        label: mavitm.content::lang.post.content_type
+        type: group
+        conditions: content_type in (:filtered)
+        options:
+            rooms:       Rooms
+            activity:    Activity
+            balloons:    Balloons
+            promotions:  Promotions
+
+
+    published:
+
+        # Filter name
+        label: mavitm.content::lang.post.published
+
+        # Filter type
+        type: switch
+
+        # SQL Conditions
+        conditions:
+            - published <> '1'
+            - published = '1'
+
+    published_date:
+
+        # Filter name
+        label: mavitm.content::lang.post.created_at
+
+        # Filter type
+        type: daterange
+
+        # SQL Conditions
+        conditions: created_at >= ':after' AND created_at <= ':before'

@@ -3,6 +3,7 @@
 use Backend;
 use System\Classes\PluginBase;
 use Backend\Classes\BackendController;
+use Mavitm\Content\Classes\TextFilter;
 use Mavitm\Content\Classes\TagProcessor;
 use Mavitm\Content\Controllers\Posts as PostsController;
 
@@ -28,6 +29,7 @@ class Plugin extends PluginBase
             'Mavitm\Content\Components\Post'       => 'contentPost',
             'Mavitm\Content\Components\Posts'      => 'contentPosts',
             'Mavitm\Content\Components\Categories' => 'contentCategories',
+            'Mavitm\Content\Components\Catmenu' => 'contentCatMenu',
             //'Mavitm\Content\Components\RssFeed'    => 'contentRssFeed'
         ];
     }
@@ -46,6 +48,11 @@ class Plugin extends PluginBase
                 'order'         => 50,
 
                 'sideMenu' => [
+                    'content_add' => [
+                        'label'         => 'mavitm.content::lang.post.create_content',
+                        'url'           =>  Backend::url('mavitm/content/posts/create'),
+                        'icon'          => 'icon-plus',
+                    ],
                     'content_list' => [
                         'label'         => 'mavitm.content::lang.plugin.name',
                         'url'           =>  Backend::url('mavitm/content/posts'),
@@ -72,6 +79,15 @@ class Plugin extends PluginBase
             $controller->addJs('/plugins/mavitm/content/assets/js/galleryToolbar.js');
         });
 
+    }
+
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'accordion' => [TextFilter::instance(), 'parseAccordion']
+            ]
+        ];
     }
 
 }

@@ -52,6 +52,13 @@ class Post extends Model
         'random' => 'Random'
     );
 
+    public static $posType = [
+      'rooms'       => "Rooms",
+      'activity'    => "Activity",
+      'balloons'    => "Balloons",
+      'promotions'  => "Promotions"
+    ];
+
     public $belongsTo = [
         'user' => ['Backend\Models\User']
     ];
@@ -102,12 +109,17 @@ class Post extends Model
             'search'     => '',
             'published'  => true,
             'exceptPost' => null,
+            'type'       => null
         ], $options));
 
         $searchableFields = ['title', 'slug', 'excerpt', 'content_html'];
 
         if ($published) {
             $query->isPublished();
+        }
+
+        if (!empty($type)) {
+            $query->where('content_type', '=', $type);
         }
 
         /*
@@ -208,6 +220,14 @@ class Post extends Model
      * GET ATTRIBUTE
      */
 
+    public function getCategoryNameAttribute(){
+        $rc = [];
+        foreach($this->categories as $c){
+            $rc[] = $c->name;
+        }
+        return implode(', ',$rc);
+    }
+
     public function getHasSummaryAttribute()
     {
         $more = '<!-- more -->';
@@ -257,6 +277,14 @@ class Post extends Model
         $url = CmsPage::url($page->getBaseFileName(), [$paramName => $category->slug]);
 
         return $url;
+    }
+
+    public function getContentTypeOptions(){
+        return self::$posType;
+    }
+
+    public function getContentType(){
+        return self::$posType[$this->content_type];
     }
 
 }

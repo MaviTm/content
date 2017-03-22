@@ -1,0 +1,18 @@
+{% if __SELF__.parentCat %}
+<div class="section-title text-center">
+    <h3 class="title-heading">{{ __SELF__.parentCat.name }}</h3>
+</div>
+<div class="textBox">
+    <div class="textBoxMain">
+        {{ __SELF__.parentCat.description|raw }}
+    </div>
+</div>
+{% endif %}
+{% if __SELF__.categories %}
+    <div class="row">
+        {% partial __SELF__ ~ "::items"
+        categories = __SELF__.categories
+        currentCategorySlug = __SELF__.currentCategorySlug
+        %}
+    </div>
+{% endif %}

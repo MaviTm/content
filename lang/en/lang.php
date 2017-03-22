@@ -15,6 +15,7 @@
         ],
         'categories_components' => [
             'title' => 'İçerik kategorileri',
+            'gird_title' => 'Resimli İçerik kategorileri',
             'description' => 'İçerik kategorilerini listeler menü',
             'category_slug' => 'Seçili olacak değer parametresi',
             'category_slug_description' => 'Kategorilerde gezinirken hangisinde olunduğu',
@@ -39,6 +40,9 @@
         'header_image' => 'Üst geniş resim',
         'list_image' => 'Liste resmi',
         'gallery_images' => 'Galeri resimleri',
+        'content_type' => 'Grup tipi',
+        'create_content' => 'Yeni içerik',
+        'delete' => 'Silmek istediğinize eminmisiniz?'
     ],
     'components' => [
         'post' => [

@@ -1,7 +1,7 @@
 <?php namespace Mavitm\Content\Models;
 
 use Model;
-
+use Mavitm\Content\Models\Post as BlogPost;
 /**
  * Model
  */
@@ -60,6 +60,14 @@ class Category extends Model
     public function getPostCountAttribute()
     {
         return $this->posts()->count();
+    }
+
+    public function getCategoryTypeOptions(){
+        return BlogPost::$posType;
+    }
+
+    public function getCategoryType(){
+        return BlogPost::$posType[$this->category_type];
     }
 
 

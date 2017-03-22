@@ -5,10 +5,10 @@ use App;
 use Request;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use Mavitm\Content\Classes\TextFilter;
+use Mavitm\Content\Models\Post as BlogPost;
 use Mavitm\Content\Models\Category as BlogCategory;
 
-class Categories extends ComponentBase
+class Catmenu extends ComponentBase
 {
     /**
      * @var Collection A collection of categories to display
@@ -25,10 +25,14 @@ class Categories extends ComponentBase
      */
     public $currentCategorySlug;
 
+    public $groupType;
+
+    public $parentCat;
+
     public function componentDetails()
     {
         return [
-            'name'        => 'mavitm.content::lang.content.categories_components.title',
+            'name'        => 'mavitm.content::lang.content.categories_components.gird_title',
             'description' => 'mavitm.content::lang.content.categories_components.description'
         ];
     }
@@ -55,6 +59,11 @@ class Categories extends ComponentBase
                 'default'     => 'blog/category',
                 'group'       => 'Links',
             ],
+            'groupType' => [
+                'title'       => 'mavitm.content::lang.post.content_type',
+                'type'        => 'dropdown',
+                'default'     => '',
+            ]
         ];
     }
 
@@ -63,16 +72,28 @@ class Categories extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function getGroupTypeOptions(){
+        return BlogPost::$posType;
+    }
+
     public function onRun()
     {
         $this->currentCategorySlug = $this->page['currentCategorySlug'] = $this->property('slug');
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
+        $this->groupType = $this->page['groupType'] = $this->property('groupType');
         $this->categories = $this->page['categories'] = $this->loadCategories();
+
+        $this->parentCat = $this->page['parentCat'] = BlogCategory::where('category_type', '=', $this->groupType)
+            ->where('parent_id', '<', 1)
+            ->orWhereNull('parent_id')
+            ->first();
     }
 
     protected function loadCategories()
     {
-        $categories = BlogCategory::orderBy('name');
+        $categories = BlogCategory::where('category_type', '=', $this->groupType)
+            ->orderBy('name');
+
         if (!$this->property('displayEmpty')) {
             $categories->whereExists(function($query) {
                 $prefix = Db::getTablePrefix();

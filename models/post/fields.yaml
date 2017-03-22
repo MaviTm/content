@@ -45,6 +45,10 @@ secondaryTabs:
             size: tiny
             span: full
             type: textarea
+        content_type:
+            tab: 'mavitm.content::lang.post.updated_at'
+            label: 'mavitm.content::lang.post.content_type'
+            type: dropdown
         categories:
             tab: 'mavitm.content::lang.content.categories.categories'
             type: relation

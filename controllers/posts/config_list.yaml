@@ -1,11 +1,17 @@
 list: $/mavitm/content/models/post/columns.yaml
 modelClass: Mavitm\Content\Models\Post
 title: Posts
+recordUrl: 'mavitm/content/posts/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 50
 showSetup: true
+showSorting: true
 showCheckboxes: true
+defaultSort:
+    column: published_at
+    direction: desc
 toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
-recordUrl: 'mavitm/content/posts/update/:id'
+filter: config_filter.yaml
